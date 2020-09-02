@@ -1,0 +1,7 @@
+.pokecard{
+    border: 2px solid violet;
+    width: 150px;
+    height: 150px;
+    margin: 5px;
+    text-align: center;
+}

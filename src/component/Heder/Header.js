@@ -6,7 +6,9 @@ const Header = () => {
     return (
         <div>
             <div className={s.HEADER}>
-                
+                <h1>
+                    PokeDex
+                </h1>
             </div>
         </div>
     )
