@@ -8,8 +8,10 @@ import { Spin } from 'antd';
 
 export default class PokeList extends Component {
   state = {
-    url: 'https://pokeapi.co/api/v2/pokemon?limit=50&offset=0',
+    url: 'https://pokeapi.co/api/v2/pokemon?limit=80&offset=0',
     pokemon: null,
+    limit: 80,
+    offset: 0
   };
 
 
