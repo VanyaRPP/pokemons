@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
+/*import React, { Component } from 'react';
 import s from './stylePokeList.module.css'
 import axios from 'axios';
-import Grid from '@material-ui/core/Grid';
 import PokeCard from '../PokeCard/PokeCard';
 import PokeLoader from '../PokeLoader/PokeLoader';
 import Pagination from '../Pagination/Pagination';
@@ -77,7 +76,7 @@ export default class PokeList extends Component {
     );
   }
 }
-/*
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import Pagination from '../Pagination/Pagination';
@@ -130,3 +129,42 @@ export default function PokeList() {
   );
 }
 */
+import React, { useState, useEffect} from 'react'
+import s from './stylePokeList.module.css'
+import axios from 'axios'
+
+export default function PokeList({ pokemons, pokeUrl, p ,}) {
+  
+  const [PokeUrl, setPokeUrl] = useState()
+  const [PokeName, setPokeName] = useState(p)
+  const [PokeImg, setPokeImg] = useState(null)
+  const [PokeID, setPokeID] = useState(null)
+  const [Loading, setLoading] = useState(true)
+
+  /*useEffect(() => {
+    setLoading(true)
+    let cancel
+    axios.get(PokeUrl, {
+    canselToken: new axios.CancelToken( c => cancel = c )})
+    .this(
+      res=>{
+        setLoading(false)
+      }
+    )
+  }, [PokeUrl])  setPokeID(
+    axios
+  )
+*/
+
+
+  return (
+    //console.log(PokeUrl),
+    //console.log(PokeName),
+    <div className={s.pokecard}>
+      <img src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png'/>
+      <p>
+        {PokeName}
+      </p>
+    </div>
+  )
+}
