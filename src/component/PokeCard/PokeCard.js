@@ -14,12 +14,11 @@ export default class PokemonCard extends Component {
         const { name, url } = this.props;
     
         const pokemonIndex = url.split('/')[url.split('/').length - 2];
-        const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemonIndex}.svg`;
-        //const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonIndex}.png`;
+        //const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemonIndex}.svg`;
+        const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonIndex}.png`;
     
         this.setState({ name, imageUrl, pokemonIndex });
     }
-    
     render() {
         return (
             <div className={s.pokecard}>
@@ -35,3 +34,34 @@ export default class PokemonCard extends Component {
         )
     }
 }
+/*
+import React, {useState} from 'react'
+import axios from 'axios'
+
+
+export default function  PokemonList({ pokemon }) {
+
+const [data, setdata] = useState([])
+
+axios.get(pokemon.map(p=>(
+
+))) 
+    .then(
+        res=>{
+            setdata(res.data.forms.name)
+        }
+    )
+
+return (
+    console.log(pokemon),
+    console.log(data),
+    
+    <div>
+        {pokemon.map(u => (
+            <div key={u}>
+                {u}
+            </div>
+        ))}
+    </div>
+    )
+}*/
