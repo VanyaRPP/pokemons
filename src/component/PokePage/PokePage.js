@@ -8,12 +8,13 @@ import Pagination from '../Pagination/Pagination'
 
 export default function PokePage() {
 
-const [currentPageUrl, setCurrentPageUrl] = useState("https://pokeapi.co/api/v2/pokemon?limit=20&offset=0")
+const [currentPageUrl, setCurrentPageUrl] = useState("https://pokeapi.co/api/v2/pokemon?limit=50&offset=0")
 const [Count, setCount] = useState(null)
 const [nextPageUrl, setNextPageUrl] = useState(null)
 const [prevPageUrl, setPrevPageUrl] = useState(null)
 const [Pokemons, setPokemons] = useState([])/////////////
 const [Loading, setLoading] = useState(true)
+const [pageNumber, setpageNumber] = useState(1)
 
 useEffect(() => {
   setLoading(true)
@@ -36,15 +37,15 @@ useEffect(() => {
 
 function gotoNextPage() {
   setCurrentPageUrl(nextPageUrl)
+  setpageNumber(pageNumber+1)
 }
 
 function gotoPrevPage() {
   setCurrentPageUrl(prevPageUrl)
+  setpageNumber(pageNumber-1)
 }
 
-function CardonDyspay() {
-  setCurrentPageUrl(prevPageUrl)
-}
+
 
 if (Loading) return <PokeLoader/>
 
@@ -55,6 +56,7 @@ if (Loading) return <PokeLoader/>
       <Pagination
         gotoNextPage={nextPageUrl ? gotoNextPage : null}
         gotoPrevPage={prevPageUrl ? gotoPrevPage : null}
+        pageNumber={pageNumber}
       />
       <p>
         Next: {nextPageUrl}
@@ -77,6 +79,7 @@ if (Loading) return <PokeLoader/>
       <Pagination
         gotoNextPage={nextPageUrl ? gotoNextPage : null}
         gotoPrevPage={prevPageUrl ? gotoPrevPage : null}
+        pageNumber={pageNumber}
       />
     </>  
   )

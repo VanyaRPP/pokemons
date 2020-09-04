@@ -2,7 +2,7 @@
     border: 2px solid violet;
     border-radius: 25px;
     width: 150px;
-    height: min-content;
+    height: 195px;
     margin: 5px;
     text-align: center;
     padding: auto;
@@ -17,9 +17,12 @@
 }
 .idDiv{
     border: 2px solid violet;
-    width: 35px;
-    height: 35px;
+    width: 40px;
+    height: 40px;
     border-radius: 100%;
+}
+.idDiv p{
+    margin: 5px auto;
 }
 .CardHeader{
     display: flex;
@@ -28,4 +31,8 @@
 }
 .nameDiv{
     margin: 5px auto;
+}
+.typeDiv p{
+    margin: 0;
+    padding: 0;
 }
