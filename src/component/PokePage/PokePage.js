@@ -73,11 +73,11 @@ if (Loading) return <PokeLoader/>
             </div>
           ))}
         {/*<PokeList pokemons = { Pokemons, PokeUrl}/>*/}
-        <Pagination
-          gotoNextPage={nextPageUrl ? gotoNextPage : null}
-          gotoPrevPage={prevPageUrl ? gotoPrevPage : null}
-        />
       </div>
+      <Pagination
+        gotoNextPage={nextPageUrl ? gotoNextPage : null}
+        gotoPrevPage={prevPageUrl ? gotoPrevPage : null}
+      />
     </>  
   )
 }

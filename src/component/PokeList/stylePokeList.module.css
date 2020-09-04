@@ -1,7 +1,31 @@
 .pokecard{
     border: 2px solid violet;
+    border-radius: 25px;
     width: 150px;
-    height: 150px;
+    height: min-content;
     margin: 5px;
     text-align: center;
+    padding: auto;
+    padding-bottom: 10px;
+    transition: 1s;
+}
+.pokecard:hover{
+        transform: scale(1.3);
+		background-color: rgba(199, 92, 241, 0.767);
+		z-index: 2;
+		box-shadow: 2px 2px 2px #000;
+}
+.idDiv{
+    border: 2px solid violet;
+    width: 35px;
+    height: 35px;
+    border-radius: 100%;
+}
+.CardHeader{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.nameDiv{
+    margin: 5px auto;
 }

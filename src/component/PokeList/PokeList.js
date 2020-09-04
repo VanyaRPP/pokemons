@@ -132,6 +132,8 @@ export default function PokeList() {
 import React, { useState, useEffect} from 'react'
 import s from './stylePokeList.module.css'
 import axios from 'axios'
+import { Spin } from 'antd'
+//import PokeLoader from '../PokeLoader/PokeLoader'
 
 export default function PokeList({ pokemons, pokeUrl, p ,}) {
   
@@ -152,19 +154,30 @@ export default function PokeList({ pokemons, pokeUrl, p ,}) {
         setLoading(false)
         setPokeID(res.data.id)
         setPokeImg(res.data.sprites.front_default)
-        setPokeType(res.data.types)
+        setPokeType(res.data.types.map(pt => pt.type.name))
       }
     )
   }, [PokeUrl])
 
-  return (
-    console.log(PokeType),
-    //console.log(PokeName),
-    <div className={s.pokecard}>
-      <img src={PokeImg} />
-      <p>
-        {PokeID}//{PokeName}
-      </p>
-    </div>
-  )
+
+    return (
+      console.log(PokeType),
+      //console.log(PokeName),
+      <div className={s.pokecard} onClick={()=>alert(PokeName)}>
+        <div className={s.CardHeader}>
+          <div className={s.idDiv}>
+            {PokeID}
+          </div>
+          <div className={s.nameDiv}>
+            {PokeName}
+          </div>
+        </div>
+        <img src={PokeImg} />
+        {PokeType.map(pot => (
+          <div className={s.typeDiv}>
+            {pot}
+          </div>
+        ))}
+      </div>
+    )
 }
