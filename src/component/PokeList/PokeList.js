@@ -135,35 +135,35 @@ import axios from 'axios'
 
 export default function PokeList({ pokemons, pokeUrl, p ,}) {
   
-  const [PokeUrl, setPokeUrl] = useState()
+  
   const [PokeName, setPokeName] = useState(p)
+  const [PokeUrl, setPokeUrl] = useState('https://pokeapi.co/api/v2/pokemon/'+ PokeName)
   const [PokeImg, setPokeImg] = useState(null)
-  const [PokeID, setPokeID] = useState(null)
+  const [PokeID, setPokeID] = useState()
+  const [PokeType, setPokeType] = useState([])
   const [Loading, setLoading] = useState(true)
 
-  /*useEffect(() => {
+  useEffect(() => {
     setLoading(true)
     let cancel
-    axios.get(PokeUrl, {
-    canselToken: new axios.CancelToken( c => cancel = c )})
-    .this(
+    axios.get(PokeUrl)
+    .then(
       res=>{
         setLoading(false)
+        setPokeID(res.data.id)
+        setPokeImg(res.data.sprites.front_default)
+        setPokeType(res.data.types)
       }
     )
-  }, [PokeUrl])  setPokeID(
-    axios
-  )
-*/
-
+  }, [PokeUrl])
 
   return (
-    //console.log(PokeUrl),
+    console.log(PokeType),
     //console.log(PokeName),
     <div className={s.pokecard}>
-      <img src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png'/>
+      <img src={PokeImg} />
       <p>
-        {PokeName}
+        {PokeID}//{PokeName}
       </p>
     </div>
   )

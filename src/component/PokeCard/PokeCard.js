@@ -1,6 +1,6 @@
 import React, {Component}  from 'react'
 import s from './stylePokeCard.module.css'
-import { Spin } from 'antd';
+
 
 export default class PokemonCard extends Component {
     

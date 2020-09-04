@@ -13,7 +13,6 @@ const [Count, setCount] = useState(null)
 const [nextPageUrl, setNextPageUrl] = useState(null)
 const [prevPageUrl, setPrevPageUrl] = useState(null)
 const [Pokemons, setPokemons] = useState([])/////////////
-const [PokeUrl, setPokeUrl] = useState(null)
 const [Loading, setLoading] = useState(true)
 
 useEffect(() => {
@@ -27,7 +26,7 @@ useEffect(() => {
         setNextPageUrl(res.data.next)
         setPrevPageUrl(res.data.previous)
         setCount(res.data.count)
-        setPokeUrl(res.data.results.map(u=>u.url))
+        //setPokeUrl(res.data.results.map(u=>u.url))
         setPokemons(res.data.results.map(p => p.name))
       }
     )
@@ -40,6 +39,10 @@ function gotoNextPage() {
 }
 
 function gotoPrevPage() {
+  setCurrentPageUrl(prevPageUrl)
+}
+
+function CardonDyspay() {
   setCurrentPageUrl(prevPageUrl)
 }
 

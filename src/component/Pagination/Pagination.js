@@ -1,10 +1,11 @@
 import React from 'react'
+import { Button } from 'antd';
 
-export default function Pagination({ gotoNextPage, gotoPrevPage }) {
+export default function pagination({ gotoNextPage, gotoPrevPage }) {
 return (
         <div>
-            {gotoPrevPage && <button onClick={gotoPrevPage}>Previous</button>}
-            {gotoNextPage && <button onClick={gotoNextPage}>Next</button>}
+            {gotoPrevPage && <Button type="primary" shape="circle" onClick={gotoPrevPage}>Previous</Button>}
+            {gotoNextPage && <Button type="primary" shape="circle" onClick={gotoNextPage}>Next</Button>}
         </div>
     )
 }
