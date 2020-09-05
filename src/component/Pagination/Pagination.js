@@ -1,5 +1,7 @@
 import React from 'react'
 import s from './stylePagination.module.css'
+import { Button } from 'antd'
+import { ArrowRightOutlined, ArrowLeftOutlined } from '@ant-design/icons';
 
 
 
@@ -8,13 +10,15 @@ export default function pagination({ gotoNextPage, gotoPrevPage, pageNumber }) {
 return (
     <div className={s.container}>
         <div className={s.pDiv}>
-            {gotoPrevPage && <button  onClick={gotoPrevPage}>Prev</button>}
+            {gotoPrevPage && <Button type="primary" shape="circle" onClick={gotoPrevPage}><ArrowLeftOutlined /></Button>}
         </div>
         <div className={s.pDiv}>
-            {pageNumber}
+            <Button disabled>
+                {pageNumber}
+            </Button>
         </div>
         <div className={s.pDiv}>
-            {gotoNextPage && <button onClick={gotoNextPage}>Next</button>}
+            {gotoNextPage && <Button type="primary"  shape="circle" onClick={gotoNextPage}><ArrowRightOutlined /></Button>}
         </div>
     </div>
 

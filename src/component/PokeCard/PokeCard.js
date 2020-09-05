@@ -1,67 +1,77 @@
-import React, {Component}  from 'react'
+import React, { useState, useEffect} from 'react'
 import s from './stylePokeCard.module.css'
-
-
-export default class PokemonCard extends Component {
-    
-    state = {
-        name: '',
-        imageUrl: '',
-        pokemonIndex: '',
-    };
-    
-    componentDidMount() {
-        const { name, url } = this.props;
-    
-        const pokemonIndex = url.split('/')[url.split('/').length - 2];
-        //const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemonIndex}.svg`;
-        const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonIndex}.png`;
-    
-        this.setState({ name, imageUrl, pokemonIndex });
-    }
-    render() {
-        return (
-            <div className={s.pokecard}>
-            <div>
-                <img height='100px' src={this.state.imageUrl}/>
-            </div>
-            <div>
-                <p>
-                {this.state.name}
-                </p>
-            </div>
-        </div>
-        )
-    }
-}
-/*
-import React, {useState} from 'react'
 import axios from 'axios'
+import { Spin } from 'antd'
+//import PokeLoader from '../PokeLoader/PokeLoader'
 
+const TYPE_COLORS = {
+  bug: 'B1C12E',
+  dark: '4F3A2D',
+  dragon: '755EDF',
+  electric: 'FCBC17',
+  fairy: 'F4B1F4',
+  fighting: '823551D',
+  fire: 'E73B0C',
+  flying: 'A3B3F7',
+  ghost: '6060B2',
+  grass: '74C236',
+  ground: 'D3B357',
+  ice: 'A3E7FD',
+  normal: 'C8C4BC',
+  poison: '934594',
+  psychic: 'ED4882',
+  rock: 'B9A156',
+  steel: 'B5B5C3',
+  water: '3295F6'
+};
 
-export default function  PokemonList({ pokemon }) {
+export default function PokeCard({ pokemons, pokeUrl, p ,}) {
+  
+  
+  const [PokeName, setPokeName] = useState(p)
+  const [PokeUrl, setPokeUrl] = useState('https://pokeapi.co/api/v2/pokemon/'+ PokeName)
+  const [PokeImg, setPokeImg] = useState(null)
+  const [PokeID, setPokeID] = useState()
+  const [PokeType, setPokeType] = useState([])
+  const [Loading, setLoading] = useState(true)
 
-const [data, setdata] = useState([])
-
-axios.get(pokemon.map(p=>(
-
-))) 
+  useEffect(() => {
+    setLoading(true)
+    let cancel
+    axios.get(PokeUrl)
     .then(
-        res=>{
-            setdata(res.data.forms.name)
-        }
+      res=>{
+        setLoading(false)
+        setPokeID(res.data.id)
+        setPokeImg(res.data.sprites.front_default)
+        setPokeType(res.data.types.map(pt => pt.type.name))
+      }
     )
+  }, [PokeUrl])
 
-return (
-    console.log(pokemon),
-    console.log(data),
-    
-    <div>
-        {pokemon.map(u => (
-            <div key={u}>
-                {u}
-            </div>
+
+    return (
+      //console.log(PokeType),
+      //console.log(PokeName),
+      <div className={s.pokecard} onClick={()=>alert(PokeName)}>
+        <div className={s.CardHeader}>
+          <div className={s.idDiv}>
+            <p>
+              {PokeID}
+            </p>
+          </div>
+          <div className={s.nameDiv}>
+            {PokeName}
+          </div>
+        </div>
+        <img src={PokeImg}/>
+        {PokeType.map(pot => (
+          <div className={s.typeDiv}>
+            <p style={{color: `#${TYPE_COLORS[pot]}`}}>
+              {pot}
+            </p>
+          </div>
         ))}
-    </div>
+      </div>
     )
-}*/
+}

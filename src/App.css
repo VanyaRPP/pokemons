@@ -1,8 +1,8 @@
 
 body{
-    font-size: 18px;
-    color: #fff;
+    font-size: 18px !important;
+    color: #fff !important;
     margin: 0;
     padding: 0;
-    background-color: gray;
+    background-color: gray !important;
 }
