@@ -2,6 +2,7 @@ import React, { useState, useEffect} from 'react'
 import s from './stylePokeCard.module.css'
 import axios from 'axios'
 import { Spin } from 'antd'
+import PokeInfoModal from '../PokeInfoModal/PokeInfoModal';
 //import PokeLoader from '../PokeLoader/PokeLoader'
 
 const TYPE_COLORS = {
@@ -49,11 +50,17 @@ export default function PokeCard({ pokemons, pokeUrl, p ,}) {
     )
   }, [PokeUrl])
 
+  function openInfo () {
+    return(
+      <PokeInfoModal/>
+    )
+    
+  }
 
     return (
       //console.log(PokeType),
       //console.log(PokeName),
-      <div className={s.pokecard} onClick={()=>alert(PokeName)}>
+      <div className={s.pokecard} onClick={openInfo}>
         <div className={s.CardHeader}>
           <div className={s.idDiv}>
             <p>

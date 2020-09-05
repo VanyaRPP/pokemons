@@ -3,8 +3,6 @@ import axios from 'axios'
 import s from './stylePokeList.module.css'
 import PokeLoader from '../PokeLoader/PokeLoader'
 import Pagination from '../Pagination/Pagination'
-import ItemSelect from '../ItemSelect/ItemSelect'
-import { Input } from 'antd'
 import PokeCard from '../PokeCard/PokeCard'
 
 export default function PokeList () {
@@ -56,7 +54,6 @@ if (Loading) return <PokeLoader/>
         gotoPrevPage={prevPageUrl ? gotoPrevPage : null}
         pageNumber={pageNumber}
       />
-      
       <p>
         Next: {nextPageUrl}
       </p>
