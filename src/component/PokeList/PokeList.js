@@ -80,7 +80,7 @@ if (Loading) return <PokeLoader/>
         <Button onClick={goto20Page}>20</Button>
         <Button onClick={goto50Page}>50</Button>
       </div>
-      <p>
+      {/*<p>
         Next: {nextPageUrl}
       </p>
       <p>
@@ -88,7 +88,7 @@ if (Loading) return <PokeLoader/>
       </p>
       <p>
         Count:{Count}
-      </p>
+      </p>*/}
       </div>
       <div className={s.grid}>
           {Pokemons.map(p=>(
