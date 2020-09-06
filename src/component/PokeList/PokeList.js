@@ -4,6 +4,8 @@ import s from './stylePokeList.module.css'
 import PokeLoader from '../PokeLoader/PokeLoader'
 import Pagination from '../Pagination/Pagination'
 import PokeCard from '../PokeCard/PokeCard'
+import { Radio, Button, Modal } from 'antd'
+import PokeInfoModal from '../PokeInfoModal/PokeInfoModal'
 
 export default function PokeList () {
 const [currentPageUrl, setCurrentPageUrl] = useState(`https://pokeapi.co/api/v2/pokemon?offset=0&limit=20`)////
@@ -43,6 +45,24 @@ function gotoPrevPage() {
   setpageNumber(pageNumber-1)
 }
 
+function gotoAllPage() {
+  setCurrentPageUrl(`https://pokeapi.co/api/v2/pokemon?offset=0&limit=1050`)
+  setpageNumber(1)
+}
+function goto10Page() {
+  setCurrentPageUrl(`https://pokeapi.co/api/v2/pokemon?offset=0&limit=10`)
+  setpageNumber(1)
+}
+function goto20Page() {
+  setCurrentPageUrl(`https://pokeapi.co/api/v2/pokemon?offset=0&limit=20`)
+  setpageNumber(1)
+}
+function goto50Page() {
+  setCurrentPageUrl(`https://pokeapi.co/api/v2/pokemon?offset=&limit=50`)
+  setpageNumber(1)
+}
+
+
 if (Loading) return <PokeLoader/>
 
   return (
@@ -54,6 +74,12 @@ if (Loading) return <PokeLoader/>
         gotoPrevPage={prevPageUrl ? gotoPrevPage : null}
         pageNumber={pageNumber}
       />
+      <div>
+        <Button onClick={gotoAllPage}>All</Button>
+        <Button onClick={goto10Page}>10</Button>
+        <Button onClick={goto20Page}>20</Button>
+        <Button onClick={goto50Page}>50</Button>
+      </div>
       <p>
         Next: {nextPageUrl}
       </p>

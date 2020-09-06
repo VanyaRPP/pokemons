@@ -1,8 +1,12 @@
-import React, { useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import s from './stylePokeCard.module.css'
 import axios from 'axios'
 import { Spin } from 'antd'
 import PokeInfoModal from '../PokeInfoModal/PokeInfoModal';
+import Modal from 'antd/lib/modal/Modal';
+import useModal from 'antd/lib/modal/useModal';
+import { render } from '@testing-library/react';
+import {Context} from './../Context'
 //import PokeLoader from '../PokeLoader/PokeLoader'
 
 const TYPE_COLORS = {
@@ -34,6 +38,9 @@ export default function PokeCard({ pokemons, pokeUrl, p ,}) {
   const [PokeImg, setPokeImg] = useState(null)
   const [PokeID, setPokeID] = useState()
   const [PokeType, setPokeType] = useState([])
+  const [PokeAbilities, setPokeAbilities] = useState([])
+  const [PokeHeight, setPokeHeight] = useState()
+  const [PokeStats, sePokeStats] = useState([])
   const [Loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -45,40 +52,56 @@ export default function PokeCard({ pokemons, pokeUrl, p ,}) {
         setLoading(false)
         setPokeID(res.data.id)
         setPokeImg(res.data.sprites.front_default)
+        setPokeHeight(res.data.height)
         setPokeType(res.data.types.map(pt => pt.type.name))
       }
     )
   }, [PokeUrl])
 
-  function openInfo () {
-    return(
-      <PokeInfoModal/>
-    )
-    
-  }
 
     return (
-      //console.log(PokeType),
-      //console.log(PokeName),
-      <div className={s.pokecard} onClick={openInfo}>
-        <div className={s.CardHeader}>
-          <div className={s.idDiv}>
-            <p>
-              {PokeID}
-            </p>
+      <Context.Provider
+      pUrl={PokeUrl}
+      >
+        <div className={s.pokecard} onClick={
+          ()=>{
+            render(
+
+              <PokeInfoModal
+              TYPE_COLORS={TYPE_COLORS}
+              pName={PokeName}
+              pUrl={PokeUrl}
+              pType={PokeType}
+              pID={PokeID}
+              pImg={PokeImg}
+              PokeAbilities={PokeAbilities}
+              PokeHeight={PokeHeight}
+              PokeStats={PokeStats}
+              />
+            )
+          
+
+          }
+        }>
+          <div className={s.CardHeader}>
+            <div className={s.idDiv}>
+              <p>
+                {PokeID}
+              </p>
+            </div>
+            <div className={s.nameDiv}>
+              {PokeName}
+            </div>
           </div>
-          <div className={s.nameDiv}>
-            {PokeName}
-          </div>
+          <img src={PokeImg}/>
+          {PokeType.map(pot => (
+            <div className={s.typeDiv}>
+              <p style={{color: `#${TYPE_COLORS[pot]}`}}>
+                {pot}
+              </p>
+            </div>
+          ))}
         </div>
-        <img src={PokeImg}/>
-        {PokeType.map(pot => (
-          <div className={s.typeDiv}>
-            <p style={{color: `#${TYPE_COLORS[pot]}`}}>
-              {pot}
-            </p>
-          </div>
-        ))}
-      </div>
+      </Context.Provider>
     )
 }
