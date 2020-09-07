@@ -40,7 +40,8 @@ export default function PokeCard({ pokemons, pokeUrl, p ,}) {
   const [PokeType, setPokeType] = useState([])
   const [PokeAbilities, setPokeAbilities] = useState([])
   const [PokeHeight, setPokeHeight] = useState()
-  const [PokeStats, sePokeStats] = useState([])
+  const [PokeBaseStats, setPokeBaseStats] = useState([])
+  const [PokeStatsName, setPokeStatsName] = useState([])
   const [Loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -54,12 +55,15 @@ export default function PokeCard({ pokemons, pokeUrl, p ,}) {
         setPokeImg(res.data.sprites.front_default)
         setPokeHeight(res.data.height)
         setPokeType(res.data.types.map(pt => pt.type.name))
+        setPokeBaseStats(res.data.stats.map(st=>st.base_stat))
+        setPokeStatsName(res.data.stats.map(st=>st.stat.name))
       }
     )
   }, [PokeUrl])
 
 
     return (
+      //console.log(PokeStatsName),
       <Context.Provider
       pUrl={PokeUrl}
       >
@@ -76,7 +80,8 @@ export default function PokeCard({ pokemons, pokeUrl, p ,}) {
               pImg={PokeImg}
               PokeAbilities={PokeAbilities}
               PokeHeight={PokeHeight}
-              PokeStats={PokeStats}
+              PokeBaseStats={PokeBaseStats}
+              PokeStatsName={PokeStatsName}
               />
             )
           

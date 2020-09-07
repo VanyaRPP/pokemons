@@ -4,7 +4,8 @@ import s from './stylePokeList.module.css'
 import PokeLoader from '../PokeLoader/PokeLoader'
 import Pagination from '../Pagination/Pagination'
 import PokeCard from '../PokeCard/PokeCard'
-import { Radio, Button, Modal } from 'antd'
+import { Button, BackTop } from 'antd'
+import { UpCircleOutlined } from '@ant-design/icons';
 import PokeInfoModal from '../PokeInfoModal/PokeInfoModal'
 
 export default function PokeList () {
@@ -102,6 +103,9 @@ if (Loading) return <PokeLoader/>
         gotoPrevPage={prevPageUrl ? gotoPrevPage : null}
         pageNumber={pageNumber}
       />
+      <BackTop>
+        <UpCircleOutlined style={{fontSize:'45px',color:'violet'}}/>
+      </BackTop>
     </>  
   )
 }
