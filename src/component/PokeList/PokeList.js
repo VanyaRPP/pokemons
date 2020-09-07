@@ -4,11 +4,12 @@ import s from './stylePokeList.module.css'
 import PokeLoader from '../PokeLoader/PokeLoader'
 import Pagination from '../Pagination/Pagination'
 import PokeCard from '../PokeCard/PokeCard'
-import { Button, BackTop } from 'antd'
-import { UpCircleOutlined } from '@ant-design/icons';
+import { Button, BackTop, Collapse } from 'antd'
+import { UpCircleOutlined } from '@ant-design/icons'
 import PokeInfoModal from '../PokeInfoModal/PokeInfoModal'
 
 export default function PokeList () {
+  const { Panel } = Collapse;
 const [currentPageUrl, setCurrentPageUrl] = useState(`https://pokeapi.co/api/v2/pokemon?offset=0&limit=20`)////
 const [Count, setCount] = useState(null)
 const [nextPageUrl, setNextPageUrl] = useState(null)
@@ -76,10 +77,19 @@ if (Loading) return <PokeLoader/>
         pageNumber={pageNumber}
       />
       <div>
-        <Button onClick={gotoAllPage}>All</Button>
-        <Button onClick={goto10Page}>10</Button>
-        <Button onClick={goto20Page}>20</Button>
-        <Button onClick={goto50Page}>50</Button>
+        <Collapse ghost style={{background:'grey', borderRadius:'20px',border:'2px solid violet'}}>
+          <Panel
+          header="Select Poke Card In Store"
+          key="1"
+          className={s.Defolt}
+          >
+          <Button onClick={gotoAllPage} className={s.Defolt}>All</Button>
+          <Button onClick={goto10Page} className={s.Defolt}>10</Button>
+          <Button onClick={goto20Page} className={s.Defolt}>20</Button>
+          <Button onClick={goto50Page} className={s.Defolt}>50</Button>
+          </Panel>
+        </Collapse>
+
       </div>
       {/*<p>
         Next: {nextPageUrl}
