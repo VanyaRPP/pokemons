@@ -16,7 +16,7 @@ const [prevPageUrl, setPrevPageUrl] = useState(null)
 const [Pokemons, setPokemons] = useState([])/////////////
 const [Loading, setLoading] = useState(true)
 const [pageNumber, setpageNumber] = useState(1)
-
+const [allPokemon, setallPokemon] = useState(false)
 
 useEffect(() => {
   setLoading(true)
