@@ -21,7 +21,7 @@ const [Loading, setLoading] = useState(true)
 const [pageNumber, setpageNumber] = useState(1)
 const [allPokemon, setallPokemon] = useState(false)
 const [filteredPokemons, setfilteredPokemons] = useState([])
-const [search, setSearch] = useState("");
+const [search, setSearch] = useState('');
 
 useEffect(() => {
   setLoading(true)
@@ -80,12 +80,11 @@ function goto50Page() {
 if (Loading) return <PokeLoader/>
 
   return (
-    //console.log(PokeUrl),
     <>
       <Search
       placeholder="Search Pokemon"
       onSearch={
-        value => console.log(value)
+        value => setSearch(value)
       }
       className={s.Defolt}
     />
@@ -121,11 +120,16 @@ if (Loading) return <PokeLoader/>
       </p>*/}
       </div>
       <div className={s.grid}>
-          {Pokemons.map(p=>(
+        {
+          search===''?
+          Pokemons.map(p=>(
             <div key={p}>
               <PokeCard p={ p }/>
+              {console.log(p)}
             </div>
-          ))}
+          )):
+          <PokeCard p={search}/>
+        }
       </div>
       <Pagination
         gotoNextPage={nextPageUrl ? gotoNextPage : null}
