@@ -120,7 +120,8 @@ const PokePade = observer((props)=>{
         <div className={s.grid}>
           {
             search!==''?
-            Pokemons.filter(p => p.includes('${search}')).map(filteredName => (
+            Pokemons.filter(name => name.includes('${search}')).map(filteredName => (
+              
                 <PokeCard p={ filteredName }/>
             ))
             :
