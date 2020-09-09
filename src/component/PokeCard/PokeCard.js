@@ -64,9 +64,7 @@ export default function PokeCard({ pokemons, pokeUrl, p ,}) {
 
     return (
       //console.log(PokeStatsName),
-      <Context.Provider
-      pUrl={PokeUrl}
-      >
+
         <div className={s.pokecard} onClick={
           ()=>{
             render(
@@ -107,6 +105,5 @@ export default function PokeCard({ pokemons, pokeUrl, p ,}) {
             </div>
           ))}
         </div>
-      </Context.Provider>
     )
 }
