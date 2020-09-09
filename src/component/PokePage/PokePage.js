@@ -22,7 +22,7 @@ const PokePade = observer((props)=>{
   const [Pokemons, setPokemons] = useState([])/////////////
   const [Loading, setLoading] = useState(true)
   const [pageNumber, setpageNumber] = useState(1)
-  const [allPokemon, setallPokemon] = useState(false)
+  const [allPokemon, setallPokemon] = useState([])
   const [filteredPokemons, setfilteredPokemons] = useState([])
   const [search, setSearch] = useState('');
   
@@ -38,12 +38,22 @@ const PokePade = observer((props)=>{
           setPrevPageUrl(res.data.previous)
           setCount(res.data.count)
           setPokemons(res.data.results.map(p => p.name))
-          
         }
       )
       return () => cancel()
   }, [currentPageUrl])
   
+/*
+  async function (){
+    await axios.get('https://pokeapi.co/api/v2/pokemon?offset=0&limit=1050')
+    .then(
+      res=>
+      allPokemon(res.data.results.map(p => p.name))
+    )
+  }*/
+
+
+
   function gotoNextPage() {
     setCurrentPageUrl(nextPageUrl)
     setpageNumber(pageNumber+1)
@@ -76,6 +86,7 @@ const PokePade = observer((props)=>{
   if (Loading) return <PokeLoader/>
   
     return (
+      console.log(allPokemon),
       <>
         <Search
         placeholder="Search Pokemon"
@@ -97,29 +108,29 @@ const PokePade = observer((props)=>{
               key="1"
               className={s.Defolt}
               >
-              <Button onClick={gotoAllPage} className={s.Defolt}>All</Button>
-              <Button onClick={goto10Page} className={s.Defolt}>10</Button>
-              <Button onClick={goto20Page} className={s.Defolt}>20</Button>
-              <Button onClick={goto50Page} className={s.Defolt}>50</Button>
+                <Button onClick={gotoAllPage} className={s.Defolt}>All</Button>
+                <Button onClick={goto10Page} className={s.Defolt}>10</Button>
+                <Button onClick={goto20Page} className={s.Defolt}>20</Button>
+                <Button onClick={goto50Page} className={s.Defolt}>50</Button>
+                {/*<Button onClick={allpok} className={s.Defolt}>dfdfdfd</Button>*/}
               </Panel>
             </Collapse>
-    
           </div>
         </div>
         <div className={s.grid}>
           {
             search!==''?
-            Pokemons.map(p=>(
-              <div key={p}>
-                <PokeCard p={ p }/>
-              </div>
-            )):
+            Pokemons.filter(p => p.includes('${search}')).map(filteredName => (
+                <PokeCard p={ filteredName }/>
+            ))
+            :
             Pokemons.map(p=>(
               <div key={p}>
                 <PokeCard p={ p }/>
               </div>
             ))
           }
+          
         </div>
         <Pagination
           gotoNextPage={nextPageUrl ? gotoNextPage : null}
