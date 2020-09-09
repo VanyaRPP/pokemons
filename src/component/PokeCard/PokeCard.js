@@ -6,7 +6,7 @@ import PokeInfoModal from '../PokeInfoModal/PokeInfoModal';
 import Modal from 'antd/lib/modal/Modal';
 import useModal from 'antd/lib/modal/useModal';
 import { render } from '@testing-library/react';
-import {Context} from './../Context'
+import {Context} from '../pageContext'
 //import PokeLoader from '../PokeLoader/PokeLoader'
 
 const TYPE_COLORS = {
@@ -30,7 +30,7 @@ const TYPE_COLORS = {
   water: '3295F6'
 };
 
-export default function PokeCard({ pokemons, pokeUrl, p ,}) {
+export default function PokeCard({p}) {
   
   
   const [PokeName, setPokeName] = useState(p)
@@ -62,30 +62,25 @@ export default function PokeCard({ pokemons, pokeUrl, p ,}) {
   }, [PokeUrl])
 
 
-    return (
-      //console.log(PokeStatsName),
+  return (
+  //console.log(PokeStatsName),
 
-        <div className={s.pokecard} onClick={
-          ()=>{
-            render(
-
-              <PokeInfoModal
-              TYPE_COLORS={TYPE_COLORS}
-              pName={PokeName}
-              pUrl={PokeUrl}
-              pType={PokeType}
-              pID={PokeID}
-              pImg={PokeImg}
-              PokeAbilities={PokeAbilities}
-              PokeHeight={PokeHeight}
-              PokeBaseStats={PokeBaseStats}
-              PokeStatsName={PokeStatsName}
-              />
-            )
-          
-
-          }
-        }>
+    <div className={s.pokecard} onClick={
+      ()=>{
+      render(
+        <PokeInfoModal
+          TYPE_COLORS={TYPE_COLORS}
+          pName={PokeName}
+          pUrl={PokeUrl}
+          pType={PokeType}
+          pID={PokeID}
+          pImg={PokeImg}
+          PokeAbilities={PokeAbilities}
+          PokeHeight={PokeHeight}
+          PokeBaseStats={PokeBaseStats}
+          PokeStatsName={PokeStatsName}
+          />)}}>
+              
           <div className={s.CardHeader}>
             <div className={s.idDiv}>
               <p>
@@ -96,14 +91,14 @@ export default function PokeCard({ pokemons, pokeUrl, p ,}) {
               {PokeName}
             </div>
           </div>
-          <img src={PokeImg}/>
-          {PokeType.map(pot => (
-            <div className={s.typeDiv}>
-              <p style={{color: `#${TYPE_COLORS[pot]}`}}>
-                {pot}
-              </p>
+            <img src={PokeImg}/>
+              {PokeType.map(pot => (
+              <div className={s.typeDiv}>
+                <p style={{color: `#${TYPE_COLORS[pot]}`}}>
+                  {pot}
+                </p>
+              </div>
+              ))}
             </div>
-          ))}
-        </div>
-    )
+  )
 }

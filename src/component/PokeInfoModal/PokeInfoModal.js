@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import s from './stylePokeInfoModal.module.css'
 import { Modal, Button, Typography, Progress } from 'antd';
-import {Context} from './../Context'
+import {Context} from '../pageContext'
 
 export default function PokeInfoModal({ pName, pType, TYPE_COLORS, pImg, PokeAbilities, PokeHeight, PokeBaseStats, PokeStatsName}){
   const [visible, setvisible] = useState(true)
@@ -16,7 +16,7 @@ function handleCancel(){
       //console.log(PokeStatsName),
       <>
         <Modal
-          width={600}
+          width={700}
           title={pName}
           visible={visible}
           //onOk={handleOk}

@@ -15,15 +15,13 @@ const PokePade = observer((props)=>{
   //const StoresContext = useContext(StoreContext)
   const { Panel } = Collapse;
   const [limit, setlimit] = useState(20)
-  const [currentPageUrl, setCurrentPageUrl] = useState(`https://pokeapi.co/api/v2/pokemon?offset=0&limit=${limit}`)////
-  const [Count, setCount] = useState(null)
+  const [currentPageUrl, setCurrentPageUrl] = useState(`https://pokeapi.co/api/v2/pokemon?offset=0&limit=${limit}`)
   const [nextPageUrl, setNextPageUrl] = useState(null)
   const [prevPageUrl, setPrevPageUrl] = useState(null)
   const [Pokemons, setPokemons] = useState([])/////////////
   const [Loading, setLoading] = useState(true)
   const [pageNumber, setpageNumber] = useState(1)
   const [allPokemon, setallPokemon] = useState([])
-  const [filteredPokemons, setfilteredPokemons] = useState([])
   const [search, setSearch] = useState('');
   
   useEffect(() => {
@@ -36,24 +34,12 @@ const PokePade = observer((props)=>{
           setLoading(false)
           setNextPageUrl(res.data.next)
           setPrevPageUrl(res.data.previous)
-          setCount(res.data.count)
           setPokemons(res.data.results.map(p => p.name))
         }
       )
       return () => cancel()
   }, [currentPageUrl])
   
-/*
-  async function (){
-    await axios.get('https://pokeapi.co/api/v2/pokemon?offset=0&limit=1050')
-    .then(
-      res=>
-      allPokemon(res.data.results.map(p => p.name))
-    )
-  }*/
-
-
-
   function gotoNextPage() {
     setCurrentPageUrl(nextPageUrl)
     setpageNumber(pageNumber+1)
@@ -66,7 +52,7 @@ const PokePade = observer((props)=>{
   
   function gotoAllPage() {
     setlimit(1050)
-    setCurrentPageUrl(`https://pokeapi.co/api/v2/pokemon?offset=0&limit=${limit}`)
+    setCurrentPageUrl(`https://pokeapi.co/api/v2/pokemon?offset=0&limit=10`)
     setpageNumber(1)
   }
   function goto10Page() {
@@ -86,15 +72,14 @@ const PokePade = observer((props)=>{
   if (Loading) return <PokeLoader/>
   
     return (
-      console.log(allPokemon),
       <>
         <Search
-        placeholder="Search Pokemon"
-        onSearch={
+          placeholder="Search Pokemon"
+          onSearch={
           value => setSearch(value)
-        }
-        className={s.Defolt}
-      />
+          }
+          className={s.Defolt}
+        />
         <div>
           <Pagination
             gotoNextPage={nextPageUrl ? gotoNextPage : null}
@@ -120,9 +105,8 @@ const PokePade = observer((props)=>{
         <div className={s.grid}>
           {
             search!==''?
-            Pokemons.filter(name => name.includes('${search}')).map(filteredName => (
-              
-                <PokeCard p={ filteredName }/>
+            Pokemons.filter(Pokemons => Pokemons.includes({search})).map(filteredName => (
+              <PokeCard p={ filteredName }/>
             ))
             :
             Pokemons.map(p=>(
