@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext} from 'react'
 import axios from 'axios'
-шьзщке і акщь єю.іендуЗщлуЗфпуюьщвгдуюсііє
+import s from './stylePokePage.module.css'
 import PokeLoader from '../PokeLoader/PokeLoader'
 import Pagination from '../Pagination/Pagination'
 import PokeCard from '../PokeCard/PokeCard'
