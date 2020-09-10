@@ -4,7 +4,7 @@ import s from './stylePokePage.module.css'
 import PokeLoader from '../PokeLoader/PokeLoader'
 import Pagination from '../Pagination/Pagination'
 import PokeCard from '../PokeCard/PokeCard'
-import { Button, BackTop, Collapse } from 'antd'
+import { Button, BackTop, Collapse, Input } from 'antd'
 import { UpCircleOutlined } from '@ant-design/icons'
 import PokeInfoModal from '../PokeInfoModal/PokeInfoModal'
 import Search from 'antd/lib/input/Search'
@@ -44,12 +44,10 @@ const PokePade = observer((props)=>{
     setCurrentPageUrl(nextPageUrl)
     setpageNumber(pageNumber+1)
   }
-  
   function gotoPrevPage() {
     setCurrentPageUrl(prevPageUrl)
     setpageNumber(pageNumber-1)
   }
-  
   function gotoAllPage() {
     setlimit(1050)
     setCurrentPageUrl(`https://pokeapi.co/api/v2/pokemon?offset=0&limit=1050`)
@@ -68,7 +66,6 @@ const PokePade = observer((props)=>{
     setpageNumber(1)
   }
   
-  
   if (Loading) return <PokeLoader/>
   
     return (
@@ -78,6 +75,7 @@ const PokePade = observer((props)=>{
           onSearch={
           value => setSearch(value)
           }
+          onChange={e => setSearch(e.target.value)}
           className={s.Defolt}
         />
         <div>
@@ -97,27 +95,18 @@ const PokePade = observer((props)=>{
                 <Button onClick={goto10Page} className={s.Defolt}>10</Button>
                 <Button onClick={goto20Page} className={s.Defolt}>20</Button>
                 <Button onClick={goto50Page} className={s.Defolt}>50</Button>
-                {/*<Button onClick={allpok} className={s.Defolt}>dfdfdfd</Button>*/}
               </Panel>
             </Collapse>
           </div>
         </div>
         <div className={s.grid}>
         {
-        search!==''?
         Pokemons.filter(name => name.includes(search)).map(filteredName => (
-        <div key={filteredName}>
-          <PokeCard p={filteredName}/>
-        </div>
+          <div key={filteredName}>
+            <PokeCard p={filteredName}/>
+          </div>
         ))
-        :
-          Pokemons.map(p=>(
-            <div key={p}>
-          <PokeCard p={p}/>
-        </div>
-          ))
         }
-          
         </div>
         <Pagination
           gotoNextPage={nextPageUrl ? gotoNextPage : null}
