@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext} from 'react'
 import axios from 'axios'
-import s from './stylePokePage.module.css'
+шьзщке і акщь єю.іендуЗщлуЗфпуюьщвгдуюсііє
 import PokeLoader from '../PokeLoader/PokeLoader'
 import Pagination from '../Pagination/Pagination'
 import PokeCard from '../PokeCard/PokeCard'
@@ -52,7 +52,7 @@ const PokePade = observer((props)=>{
   
   function gotoAllPage() {
     setlimit(1050)
-    setCurrentPageUrl(`https://pokeapi.co/api/v2/pokemon?offset=0&limit=10`)
+    setCurrentPageUrl(`https://pokeapi.co/api/v2/pokemon?offset=0&limit=1050`)
     setpageNumber(1)
   }
   function goto10Page() {
@@ -103,18 +103,20 @@ const PokePade = observer((props)=>{
           </div>
         </div>
         <div className={s.grid}>
-          {
-            search!==''?
-            Pokemons.filter(Pokemons => Pokemons.includes({search})).map(filteredName => (
-              <PokeCard p={ filteredName }/>
-            ))
-            :
-            Pokemons.map(p=>(
-              <div key={p}>
-                <PokeCard p={ p }/>
-              </div>
-            ))
-          }
+        {
+        search!==''?
+        Pokemons.filter(name => name.includes(search)).map(filteredName => (
+        <div key={filteredName}>
+          <PokeCard p={filteredName}/>
+        </div>
+        ))
+        :
+          Pokemons.map(p=>(
+            <div key={p}>
+          <PokeCard p={p}/>
+        </div>
+          ))
+        }
           
         </div>
         <Pagination
