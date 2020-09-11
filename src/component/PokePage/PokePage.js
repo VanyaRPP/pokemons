@@ -9,10 +9,11 @@ import Search from 'antd/lib/input/Search'
 import { observer } from 'mobx-react'
 import { PokeList } from '../PokeList/PokeList'
 import { SelectorType } from '../SelectorType/SelectorType'
-//import { StoreContext } from './Context'
+import { pageContext } from './../pageContext'
 
 const PokePade = observer((props)=>{
-  //const StoresContext = useContext(StoreContext)
+  const Context = useContext(pageContext)
+
   const { Panel } = Collapse;
   const [limit, setlimit] = useState(20)
   const [currentPageUrl, setCurrentPageUrl] = useState(`https://pokeapi.co/api/v2/pokemon?offset=0&limit=${limit}`)
@@ -21,8 +22,10 @@ const PokePade = observer((props)=>{
   const [Pokemons, setPokemons] = useState([])
   const [Loading, setLoading] = useState(true)
   const [pageNumber, setpageNumber] = useState(1)
-  const [allPokemon, setallPokemon] = useState([])
-  const [search, setSearch] = useState('');
+  //const [allPokemon, setallPokemon] = useState([])
+  const [search, setSearch] = useState('')
+  const [TypeFiltre, setTypeFiltre] = useState(false)
+  const [TyprUrl, setTyprUrl] = useState()
   
   useEffect(() => {
     setLoading(true)
@@ -65,6 +68,12 @@ const PokePade = observer((props)=>{
     setCurrentPageUrl(`https://pokeapi.co/api/v2/pokemon?offset=0&limit=50`)
     setpageNumber(1)
   }
+  function ontypeClick(){
+		setTypeFiltre(true)
+  }
+  function onclearTypeClick(){
+		setTypeFiltre(false)
+	}
   if (Loading) return <PokeLoader/>
     return (
       <>
@@ -98,7 +107,12 @@ const PokePade = observer((props)=>{
               key="2"
               className={s.Defolt}
               >
-                <SelectorType/>
+                <SelectorType 
+                ontypeClick={ ontypeClick } 
+                onclearTypeClick={onclearTypeClick}
+                //setTyprUrl={}
+                />
+                {console.log(TypeFiltre)}
               </Panel>
             </Collapse>
           </div>

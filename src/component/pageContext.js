@@ -1,3 +1,3 @@
-import {createContext} from 'react'
+import React, {createContext} from 'react'
 
-export const pageContext = createContext()
+export const pageContext = React.createContext()

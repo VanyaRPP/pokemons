@@ -1,4 +1,4 @@
-import React, {useEffect,useState} from 'react'
+import React, { useEffect,useState} from 'react'
 import { Button } from 'antd'
 import s from './stylePokeTypeSelector.module.css'
 import axios from 'axios'
@@ -26,7 +26,7 @@ const TYPE_COLORS = {
 	shadow: 'B8C0EA'
 };
 
-export const SelectorType = () => {
+export const SelectorType = ({ ontypeClick, onclearTypeClick, setTyprUrl }) => {
 	const allTyprURL='https://pokeapi.co/api/v2/type'
 	const [Type, setType] = useState([])
 
@@ -39,27 +39,35 @@ export const SelectorType = () => {
 		)
 	}, [allTyprURL])
 
-  return (
-		console.log(Type),
-    <div>
+
+
+	return (
+    	<div>
 			<Button
 			className={s.Defolt}
 			style={{
 			color:`violet`
-			}}>
-				All
+			}}
+			onClick={()=>(
+				onclearTypeClick()
+			)}
+			>
+				&times;
 			</Button>
 			{
 				Type.map(tName=>(
 					<Button
 					className={s.Defolt}
 					style={{background: `#${TYPE_COLORS[tName.name]}`,color:`violet`}}
+					onClick={()=>(
+						ontypeClick()
+					)}
 					>
 						{tName.name}
 					</Button>
 				))
 			}
 			
-    </div>
-  )
+    	</div>
+	)
 }
