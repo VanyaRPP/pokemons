@@ -9,6 +9,7 @@ import { UpCircleOutlined } from '@ant-design/icons'
 import PokeInfoModal from '../PokeInfoModal/PokeInfoModal'
 import Search from 'antd/lib/input/Search'
 import { observer } from 'mobx-react'
+import { PokeList } from '../PokeList/PokeList'
 //import { StoreContext } from './Context'
 
 const PokePade = observer((props)=>{
@@ -99,14 +100,18 @@ const PokePade = observer((props)=>{
             </Collapse>
           </div>
         </div>
+        <PokeList 
+        Pokemons={Pokemons}
+        search={search}
+        />
         <div className={s.grid}>
-        {
+        {/*
         Pokemons.filter(name => name.includes(search)).map(filteredName => (
           <div key={filteredName}>
             <PokeCard p={filteredName}/>
           </div>
         ))
-        }
+        */}
         </div>
         <Pagination
           gotoNextPage={nextPageUrl ? gotoNextPage : null}
