@@ -27,7 +27,9 @@ const TYPE_COLORS = {
   psychic: 'ED4882',
   rock: 'B9A156',
   steel: 'B5B5C3',
-  water: '3295F6'
+	water: '3295F6',
+	unknown: '00BBCD',
+	shadow: 'B8C0EA'
 };
 
 export default function PokeCard({p}) {

@@ -3,13 +3,12 @@ import axios from 'axios'
 import s from './stylePokePage.module.css'
 import PokeLoader from '../PokeLoader/PokeLoader'
 import Pagination from '../Pagination/Pagination'
-import PokeCard from '../PokeCard/PokeCard'
 import { Button, BackTop, Collapse, Input } from 'antd'
 import { UpCircleOutlined } from '@ant-design/icons'
-import PokeInfoModal from '../PokeInfoModal/PokeInfoModal'
 import Search from 'antd/lib/input/Search'
 import { observer } from 'mobx-react'
 import { PokeList } from '../PokeList/PokeList'
+import { SelectorType } from '../SelectorType/SelectorType'
 //import { StoreContext } from './Context'
 
 const PokePade = observer((props)=>{
@@ -19,7 +18,7 @@ const PokePade = observer((props)=>{
   const [currentPageUrl, setCurrentPageUrl] = useState(`https://pokeapi.co/api/v2/pokemon?offset=0&limit=${limit}`)
   const [nextPageUrl, setNextPageUrl] = useState(null)
   const [prevPageUrl, setPrevPageUrl] = useState(null)
-  const [Pokemons, setPokemons] = useState([])/////////////
+  const [Pokemons, setPokemons] = useState([])
   const [Loading, setLoading] = useState(true)
   const [pageNumber, setpageNumber] = useState(1)
   const [allPokemon, setallPokemon] = useState([])
@@ -66,16 +65,13 @@ const PokePade = observer((props)=>{
     setCurrentPageUrl(`https://pokeapi.co/api/v2/pokemon?offset=0&limit=50`)
     setpageNumber(1)
   }
-  
   if (Loading) return <PokeLoader/>
-  
     return (
       <>
         <Search
           placeholder="Search Pokemon"
           onSearch={
-          value => setSearch(value)
-          }
+          value => setSearch(value)}
           onChange={e => setSearch(e.target.value)}
           className={s.Defolt}
         />
@@ -85,8 +81,8 @@ const PokePade = observer((props)=>{
             gotoPrevPage={prevPageUrl ? gotoPrevPage : null}
             pageNumber={pageNumber}
           />
-          <div>
-            <Collapse ghost style={{background:'grey', borderRadius:'20px',border:'2px solid violet'}}>
+        <div>
+            <Collapse ghost style={{background:'grey', borderRadius:'20px',border:'2px solid violet',border:`none`}}>
               <Panel
               header="Select Poke Card In Store"
               key="1"
@@ -97,22 +93,20 @@ const PokePade = observer((props)=>{
                 <Button onClick={goto20Page} className={s.Defolt}>20</Button>
                 <Button onClick={goto50Page} className={s.Defolt}>50</Button>
               </Panel>
+              <Panel
+              header="Select Poke Type"
+              key="2"
+              className={s.Defolt}
+              >
+                <SelectorType/>
+              </Panel>
             </Collapse>
           </div>
         </div>
         <PokeList 
-        Pokemons={Pokemons}
-        search={search}
+          Pokemons={Pokemons}
+          search={search}
         />
-        <div className={s.grid}>
-        {/*
-        Pokemons.filter(name => name.includes(search)).map(filteredName => (
-          <div key={filteredName}>
-            <PokeCard p={filteredName}/>
-          </div>
-        ))
-        */}
-        </div>
         <Pagination
           gotoNextPage={nextPageUrl ? gotoNextPage : null}
           gotoPrevPage={prevPageUrl ? gotoPrevPage : null}
