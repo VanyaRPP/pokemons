@@ -9,13 +9,13 @@ import Search from 'antd/lib/input/Search'
 import { observer } from 'mobx-react'
 import { PokeList } from '../PokeList/PokeList'
 import { SelectorType } from '../SelectorType/SelectorType'
-import { pageContext } from './../pageContext'
+import { pageContext } from '../pageContext'
 
 const PokePade = observer((props)=>{
   const Context = useContext(pageContext)
 
   const { Panel } = Collapse;
-  const [currentPageUrl, setCurrentPageUrl] = useState(`https://pokeapi.co/api/v2/pokemon?offset=0&limit=20`)
+  const [currentPageUrl, setCurrentPageUrl] = useState(`https://pokeapi.co/api/v2/pokemon?offset=0&limit=${limit}`)
   const [nextPageUrl, setNextPageUrl] = useState(null)
   const [prevPageUrl, setPrevPageUrl] = useState(null)
   const [Pokemons, setPokemons] = useState([])
@@ -23,9 +23,9 @@ const PokePade = observer((props)=>{
   const [pageNumber, setpageNumber] = useState(1)
   //const [allPokemon, setallPokemon] = useState([])
   const [search, setSearch] = useState('')
-  const [TypeFiltre, setTypeFiltre] = useState(true)
-  const [TyprUrl, setTyprUrl] = useState('https://pokeapi.co/api/v2/type/3')
-
+  const [TypeFiltre, setTypeFiltre] = useState(false)
+  const [TyprUrl, setTyprUrl] = useState()
+  
   useEffect(() => {
     setLoading(true)
     let cancel
@@ -36,29 +36,11 @@ const PokePade = observer((props)=>{
           setLoading(false)
           setNextPageUrl(res.data.next)
           setPrevPageUrl(res.data.previous)
-          TypeFiltre?
           setPokemons(res.data.results.map(p => p.name))
-          :setPokemons(res.data.pokemon.map(p => p.pokemon.name))
         }
       )
       return () => cancel()
   }, [currentPageUrl])
-  /*:
-  useEffect(() => {
-    setLoading(true)
-    let cancel
-    axios.get(TyprUrl, {
-      canselToken: new axios.CancelToken( c => cancel = c )})
-      .then(
-        res=>{
-          console.log('go')
-          setLoading(false)
-          setPokemons(res.data.pokemon.map(p => p.pokemon.name))
-        }
-      )
-      return () => cancel()
-  }, [currentPageUrl])
-*/
   
   function gotoNextPage() {
     setCurrentPageUrl(nextPageUrl)
@@ -85,12 +67,10 @@ const PokePade = observer((props)=>{
     setpageNumber(1)
   }
   function ontypeClick(){
-    setTypeFiltre(false)
-    setCurrentPageUrl('https://pokeapi.co/api/v2/type/3')
+		setTypeFiltre(true)
   }
   function onclearTypeClick(){
-    setTypeFiltre(true)
-    goto20Page()
+		setTypeFiltre(false)
 	}
   if (Loading) return <PokeLoader/>
     return (

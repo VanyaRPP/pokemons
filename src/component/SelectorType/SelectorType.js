@@ -42,7 +42,7 @@ export const SelectorType = ({ ontypeClick, onclearTypeClick, setTyprUrl }) => {
 
 
 	return (
-    	<div>
+    <div>
 			<Button
 			className={s.Defolt}
 			style={{
@@ -68,6 +68,6 @@ export const SelectorType = ({ ontypeClick, onclearTypeClick, setTyprUrl }) => {
 				))
 			}
 			
-    	</div>
+    </div>
 	)
 }
