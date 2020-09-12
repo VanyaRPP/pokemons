@@ -2,6 +2,7 @@ import React, { useEffect,useState} from 'react'
 import { Button } from 'antd'
 import s from './stylePokeTypeSelector.module.css'
 import axios from 'axios'
+import { pageContext } from '../pageContext';
 
 const TYPE_COLORS = {
   bug: 'B1C12E',
@@ -26,9 +27,12 @@ const TYPE_COLORS = {
 	shadow: 'B8C0EA'
 };
 
-export const SelectorType = ({ ontypeClick, onclearTypeClick, setTyprUrl }) => {
+export const SelectorType = ({ ontypeClick, onclearTypeClick }) => {
 	const allTyprURL='https://pokeapi.co/api/v2/type'
 	const [Type, setType] = useState([])
+	const [TypeU, setTypeU] = useState([])
+
+	const TypeUrlCont = React.createContext()
 
 	useEffect(() => {
 		axios.get(allTyprURL)
@@ -42,32 +46,35 @@ export const SelectorType = ({ ontypeClick, onclearTypeClick, setTyprUrl }) => {
 
 
 	return (
-    <div>
-			<Button
-			className={s.Defolt}
-			style={{
-			color:`violet`
-			}}
-			onClick={()=>(
-				onclearTypeClick()
-			)}
-			>
-				&times;
-			</Button>
-			{
-				Type.map(tName=>(
-					<Button
-					className={s.Defolt}
-					style={{background: `#${TYPE_COLORS[tName.name]}`,color:`violet`}}
-					onClick={()=>(
-						ontypeClick()
-					)}
-					>
-						{tName.name}
-					</Button>
-				))
-			}
-			
-    </div>
+		console.log(TypeU),
+		<TypeUrlCont.Provider value = {TypeU} >
+			<div>
+				<Button
+				className={s.Defolt}
+				style={{
+				color:`violet`
+				}}
+				onClick={()=>(
+					onclearTypeClick()
+				)}
+				>
+					&times;
+				</Button>
+				{
+					Type.map(tName=>(
+						<Button
+						className={s.Defolt}
+						style={{background: `#${TYPE_COLORS[tName.name]}`,color:`violet`}}
+						onClick={()=>(
+							setTypeU(tName.url),
+							ontypeClick(TypeU)
+						)}
+						>
+							{tName.name}
+						</Button>
+					))
+				}
+			</div>
+		</TypeUrlCont.Provider>
 	)
 }

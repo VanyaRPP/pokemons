@@ -8,11 +8,10 @@ import { UpCircleOutlined } from '@ant-design/icons'
 import Search from 'antd/lib/input/Search'
 import { observer } from 'mobx-react'
 import { PokeList } from '../PokeList/PokeList'
-import { SelectorType } from '../SelectorType/SelectorType'
-import { pageContext } from './../pageContext'
+import { SelectorType, TypeUrlCont } from '../SelectorType/SelectorType'
 
 const PokePade = observer((props)=>{
-  const Context = useContext(pageContext)
+
 
   const { Panel } = Collapse;
   const [currentPageUrl, setCurrentPageUrl] = useState(`https://pokeapi.co/api/v2/pokemon?offset=0&limit=20`)
@@ -24,7 +23,6 @@ const PokePade = observer((props)=>{
   //const [allPokemon, setallPokemon] = useState([])
   const [search, setSearch] = useState('')
   const [TypeFiltre, setTypeFiltre] = useState(true)
-  const [TyprUrl, setTyprUrl] = useState('https://pokeapi.co/api/v2/type/3')
 
   useEffect(() => {
     setLoading(true)
@@ -127,10 +125,9 @@ const PokePade = observer((props)=>{
               >
                 <SelectorType 
                 ontypeClick={ ontypeClick } 
-                onclearTypeClick={onclearTypeClick}
+                onclearTypeClick={ onclearTypeClick }
                 //setTyprUrl={}
                 />
-                {console.log(TypeFiltre)}
               </Panel>
             </Collapse>
           </div>
