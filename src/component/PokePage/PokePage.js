@@ -67,24 +67,28 @@ const PokePade = observer((props)=>{
     setpageNumber(pageNumber-1)
   }
   function gotoAllPage() {
+    setTypeFiltre(true)
     setCurrentPageUrl(`https://pokeapi.co/api/v2/pokemon?offset=0&limit=1050`)
     setpageNumber(1)
   }
   function goto10Page() {
+    setTypeFiltre(true)
     setCurrentPageUrl(`https://pokeapi.co/api/v2/pokemon?offset=0&limit=10`)
     setpageNumber(1)
   }
   function goto20Page() {
+    setTypeFiltre(true)
     setCurrentPageUrl(`https://pokeapi.co/api/v2/pokemon?offset=0&limit=20`)
     setpageNumber(1)
   }
   function goto50Page() {
+    setTypeFiltre(true)
     setCurrentPageUrl(`https://pokeapi.co/api/v2/pokemon?offset=0&limit=50`)
     setpageNumber(1)
   }
-  function ontypeClick(){
+  function ontypeClick(value){
     setTypeFiltre(false)
-    setCurrentPageUrl('https://pokeapi.co/api/v2/type/3')
+    setCurrentPageUrl(value)
   }
   function onclearTypeClick(){
     setTypeFiltre(true)
@@ -97,7 +101,9 @@ const PokePade = observer((props)=>{
           placeholder="Search Pokemon"
           onSearch={
           value => setSearch(value)}
-          onChange={e => setSearch(e.target.value)}
+          onChange={e =>(
+            setSearch(e.target.value)
+          )}
           className={s.Defolt}
         />
         <div>

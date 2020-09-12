@@ -30,10 +30,7 @@ const TYPE_COLORS = {
 export const SelectorType = ({ ontypeClick, onclearTypeClick }) => {
 	const allTyprURL='https://pokeapi.co/api/v2/type'
 	const [Type, setType] = useState([])
-	const [TypeU, setTypeU] = useState([])
-
-	const TypeUrlCont = React.createContext()
-
+	
 	useEffect(() => {
 		axios.get(allTyprURL)
 		.then(
@@ -46,8 +43,6 @@ export const SelectorType = ({ ontypeClick, onclearTypeClick }) => {
 
 
 	return (
-		console.log(TypeU),
-		<TypeUrlCont.Provider value = {TypeU} >
 			<div>
 				<Button
 				className={s.Defolt}
@@ -66,8 +61,7 @@ export const SelectorType = ({ ontypeClick, onclearTypeClick }) => {
 						className={s.Defolt}
 						style={{background: `#${TYPE_COLORS[tName.name]}`,color:`violet`}}
 						onClick={()=>(
-							setTypeU(tName.url),
-							ontypeClick(TypeU)
+							ontypeClick(tName.url)
 						)}
 						>
 							{tName.name}
@@ -75,6 +69,5 @@ export const SelectorType = ({ ontypeClick, onclearTypeClick }) => {
 					))
 				}
 			</div>
-		</TypeUrlCont.Provider>
 	)
 }
