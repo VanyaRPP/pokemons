@@ -107,11 +107,6 @@ const PokePade = observer((props)=>{
           className={s.Defolt}
         />
         <div>
-          <Pagination
-            gotoNextPage={nextPageUrl ? gotoNextPage : null}
-            gotoPrevPage={prevPageUrl ? gotoPrevPage : null}
-            pageNumber={pageNumber}
-          />
         <div>
             <Collapse ghost style={{background:'grey', borderRadius:'20px',border:'2px solid violet',border:`none`}}>
               <Panel
@@ -137,6 +132,11 @@ const PokePade = observer((props)=>{
               </Panel>
             </Collapse>
           </div>
+          <Pagination
+            gotoNextPage={nextPageUrl ? gotoNextPage : null}
+            gotoPrevPage={prevPageUrl ? gotoPrevPage : null}
+            pageNumber={pageNumber}
+          />
         </div>
         <PokeList 
           Pokemons={Pokemons}
