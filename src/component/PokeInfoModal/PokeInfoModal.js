@@ -54,8 +54,8 @@ function handleCancel(){
                     percent={pbs/2} format={percent => `${pbs}`}
                     status={"normal"}
                   />
-                ))
-                }
+                  ))
+                  }
                   </div>
                 </div>
               </div>

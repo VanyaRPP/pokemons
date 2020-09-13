@@ -99,16 +99,21 @@ const PokePade = observer((props)=>{
       <>
         <Search
           placeholder="Search Pokemon"
+          defaultValue={
+            search!==''?search:null
+          }
           onSearch={()=>(
-            value => setSearch(value),
-            Search!==''?
+            search!==''?
             gotoAllPage()
             :
-            setCurrentPageUrl(currentPageUrl)
+            setCurrentPageUrl(currentPageUrl),
+            value => setSearch(value)
           )
           }
           onChange={e =>(
-            setSearch(e.target.value)
+            setSearch(e.target.value),
+            search===''?
+            setCurrentPageUrl(currentPageUrl):gotoAllPage()
           )}
           className={s.Defolt}
         />
