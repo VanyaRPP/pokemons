@@ -73,16 +73,19 @@ const PokePade = observer((props)=>{
   }
   function goto10Page() {
     setTypeFiltre(true)
+    setSearch('')
     setCurrentPageUrl(`https://pokeapi.co/api/v2/pokemon?offset=0&limit=10`)
     setpageNumber(1)
   }
   function goto20Page() {
     setTypeFiltre(true)
+    setSearch('')
     setCurrentPageUrl(`https://pokeapi.co/api/v2/pokemon?offset=0&limit=20`)
     setpageNumber(1)
   }
   function goto50Page() {
     setTypeFiltre(true)
+    setSearch('')
     setCurrentPageUrl(`https://pokeapi.co/api/v2/pokemon?offset=0&limit=50`)
     setpageNumber(1)
   }

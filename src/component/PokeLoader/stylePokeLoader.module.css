@@ -1,7 +1,7 @@
 
 .wrapper
 {
-    position: absolute;
+    position: absolute !important;
     top: 50% !important;
     left: 50% !important;
     color: black !important;
@@ -21,7 +21,7 @@
 }
 
 .pokeball:after{
-  content: '';
+  content: ''!important;
   position: absolute !important;
   width: 60px !important;
   height: 30px !important;
@@ -31,7 +31,7 @@
 }
 
 .pokeball:before{
-  content: '';
+  content: ''!important;
   position: absolute !important;
   background-color: #fff !important ;
   width: 10px !important;
