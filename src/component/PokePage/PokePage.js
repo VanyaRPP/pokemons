@@ -6,12 +6,11 @@ import Pagination from '../Pagination/Pagination'
 import { Button, BackTop, Collapse, Input } from 'antd'
 import { UpCircleOutlined } from '@ant-design/icons'
 import Search from 'antd/lib/input/Search'
-import { observer } from 'mobx-react'
 import { PokeList } from '../PokeList/PokeList'
 import { SelectorType, TypeUrlCont } from '../SelectorType/SelectorType'
 
-const PokePade = observer((props)=>{
 
+export default function PokePage(){
 
   const { Panel } = Collapse;
   const [currentPageUrl, setCurrentPageUrl] = useState(`https://pokeapi.co/api/v2/pokemon?offset=0&limit=20`)
@@ -166,6 +165,5 @@ const PokePade = observer((props)=>{
         </BackTop>
       </>  
     )
-  }
-) 
-export default PokePade
+  } 
+//export default PokePage

@@ -8,7 +8,7 @@ export const PokeList = ({Pokemons, search}) => {
       {
       Pokemons.filter(name => name.includes(search)).map(filteredName => (
         <div key={filteredName}>
-          <PokeCard p={filteredName}/>
+          <PokeCard key={filteredName} p={filteredName}/>
         </div>
         ))
       }
