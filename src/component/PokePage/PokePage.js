@@ -19,7 +19,6 @@ export default function PokePage(){
   const [Pokemons, setPokemons] = useState([])
   const [Loading, setLoading] = useState(true)
   const [pageNumber, setpageNumber] = useState(1)
-  //const [allPokemon, setallPokemon] = useState([])
   const [search, setSearch] = useState('')
   const [TypeFiltre, setTypeFiltre] = useState(true)
 
@@ -40,22 +39,7 @@ export default function PokePage(){
       )
       return () => cancel()
   }, [currentPageUrl])
-  /*:
-  useEffect(() => {
-    setLoading(true)
-    let cancel
-    axios.get(TyprUrl, {
-      canselToken: new axios.CancelToken( c => cancel = c )})
-      .then(
-        res=>{
-          console.log('go')
-          setLoading(false)
-          setPokemons(res.data.pokemon.map(p => p.pokemon.name))
-        }
-      )
-      return () => cancel()
-  }, [currentPageUrl])
-*/
+
   
   function gotoNextPage() {
     setCurrentPageUrl(nextPageUrl)
@@ -140,7 +124,6 @@ export default function PokePage(){
                 <SelectorType 
                 ontypeClick={ ontypeClick } 
                 onclearTypeClick={ onclearTypeClick }
-                //setTyprUrl={}
                 />
               </Panel>
             </Collapse>
@@ -166,4 +149,3 @@ export default function PokePage(){
       </>  
     )
   } 
-//export default PokePage

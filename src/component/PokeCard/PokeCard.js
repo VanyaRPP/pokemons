@@ -7,7 +7,7 @@ import Modal from 'antd/lib/modal/Modal';
 import useModal from 'antd/lib/modal/useModal';
 import { render } from '@testing-library/react';
 import {Context} from '../pageContext'
-//import PokeLoader from '../PokeLoader/PokeLoader'
+
 
 const TYPE_COLORS = {
   bug: 'B1C12E',
@@ -65,7 +65,7 @@ export default function PokeCard({p}) {
 
 
   return (
-  //console.log(PokeStatsName),
+
 
     <div className={s.pokecard} onClick={
       ()=>{

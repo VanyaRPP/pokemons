@@ -5,21 +5,18 @@ import {Context} from '../pageContext'
 
 export default function PokeInfoModal({ pName, pType, TYPE_COLORS, pImg, PokeAbilities, PokeHeight, PokeBaseStats, PokeStatsName}){
   const [visible, setvisible] = useState(true)
-/*
-function handleOk(){
-  setvisible(false)
-}*/
+
 function handleCancel(){
   setvisible(false)
 }
     return (
-      //console.log(PokeStatsName),
+      
       <>
         <Modal
           width={700}
           title={pName}
           visible={visible}
-          //onOk={handleOk}
+
           onCancel={handleCancel}
           footer={null}
         >
