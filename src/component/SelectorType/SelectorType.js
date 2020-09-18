@@ -2,7 +2,6 @@ import React, { useEffect,useState} from 'react'
 import { Button } from 'antd'
 import s from './stylePokeTypeSelector.module.css'
 import axios from 'axios'
-import { pageContext } from '../pageContext';
 
 const TYPE_COLORS = {
   bug: 'B1C12E',
